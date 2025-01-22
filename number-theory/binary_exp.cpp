@@ -8,14 +8,14 @@ using namespace std;
 
 
 int gcd(int a, int b) {                     //Euclid's Algorithm, works even for a < b
-   if (b==0) return a;                      //O(log2(a)) - Worst case, if b = 2
-   return gcd(b, a%b);
+  if (b==0) return a;                      //O(log2(a)) - Worst case, if b = 2
+    return gcd(b, a%b);
     
 }
    
 int binaryExpRec(int a, int b, int M) {                      //O(log2(b))
-   if (b==0) return 1;
-   int res = binaryExpRec(a, b/2);
+ if (b==0) return 1;
+   int res = binaryExpRec(a, b/2, M);
    if (b&1) {
       return (a * (res * res) % M) % M;
    }               
@@ -43,5 +43,4 @@ int binaryExp(int a, int b, int M) {         //in log2(b) time
 
 
 int32_t main() {
-    cout << binaryExpRec(3,4) << endl;
 }
