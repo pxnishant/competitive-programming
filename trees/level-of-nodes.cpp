@@ -40,14 +40,30 @@ typedef tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_
  
 vector<vector<int>> g;
 vector<int> level;
-void dfs(int node, int parent, int lev) {
-   level[node] = lev;
+
+//method 1
+
+// void dfs(int node, int parent, int lev) {
+//    level[node] = lev;
+
+//    for (int i : g[node]) {
+//       if (i==parent) continue;
+//       dfs(i, node, lev+1);
+//    }
+// }
+
+//method 2
+
+void dfs(int node, int parent) {
 
    for (int i : g[node]) {
       if (i==parent) continue;
-      dfs(i, node, lev+1);
+      level[i] = level[node] + 1;
+      dfs(i, node);
    }
 }
+
+
 void solve() {
    int n; cin >> n; g.clear(); g.resize(n+1); 
    level.clear(); level.resize(n+1, 0);
